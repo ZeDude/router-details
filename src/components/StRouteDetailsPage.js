@@ -32,7 +32,7 @@ const reducerRowDetails = (state, action) => {
           }
         });
       });
-      console.log('FETCH_ROUTERDETAILS, newState: ', JSON.stringify(newState));
+      // debug_log      console.log('FETCH_ROUTERDETAILS, newState: ', JSON.stringify(newState));
       return newState;
     case 'CHANGE_TABKEY':
       if (state.tabCurrentKey !== action.payload) {
@@ -51,50 +51,50 @@ const reducerRowDetails = (state, action) => {
     case 'TOGGLE_ROWGROUP':
       newState = Object.assign({}, state);
       // rowGroupKey = action.payload;
-      console.log(
-        `before TOGGLE_ROWGROUP tabCurrentKey: ${
-          state.tabCurrentKey
-        } action.payload: ${action.payload} current bool: ${
-          newState.rowGroupsStatus[state.tabCurrentKey][action.payload]
-        }`
-      );
+      // debug_log console.log(
+      //   `before TOGGLE_ROWGROUP tabCurrentKey: ${
+      //     state.tabCurrentKey
+      //   } action.payload: ${action.payload} current bool: ${
+      //     newState.rowGroupsStatus[state.tabCurrentKey][action.payload]
+      //   }`
+      // );
       newState.rowGroupsStatus[state.tabCurrentKey][action.payload] =
         !newState.rowGroupsStatus[state.tabCurrentKey][action.payload];
-      console.log(
-        `after TOGGLE_ROWGROUP tabCurrentKey: ${
-          state.tabCurrentKey
-        } action.payload: ${action.payload} current bool: ${
-          newState.rowGroupsStatus[state.tabCurrentKey][action.payload]
-        }`
-      );
+      // debug_log console.log(
+      //   `after TOGGLE_ROWGROUP tabCurrentKey: ${
+      //     state.tabCurrentKey
+      //   } action.payload: ${action.payload} current bool: ${
+      //     newState.rowGroupsStatus[state.tabCurrentKey][action.payload]
+      //   }`
+      // );
       return newState;
     case 'TOGGLE_ROWFIELD':
       newState = Object.assign({}, state);
       let rowFieldTree = action.payload.split('##');
-      console.log(
-        `before TOGGLE_ROWFIELD tabCurrentKey: ${
-          state.tabCurrentKey
-        } action.payload: ${action.payload} current bool: ${
-          newState.routerDetailsData[rowFieldTree[0]][rowFieldTree[1]][
-            rowFieldTree[2]
-          ][rowFieldTree[3]]
-        }`
-      );
+      // debug_log console.log(
+      //   `before TOGGLE_ROWFIELD tabCurrentKey: ${
+      //     state.tabCurrentKey
+      //   } action.payload: ${action.payload} current bool: ${
+      //     newState.routerDetailsData[rowFieldTree[0]][rowFieldTree[1]][
+      //       rowFieldTree[2]
+      //     ][rowFieldTree[3]]
+      //   }`
+      // );
       newState.routerDetailsData[rowFieldTree[0]][rowFieldTree[1]][
         rowFieldTree[2]
       ][rowFieldTree[3]] =
         !newState.routerDetailsData[rowFieldTree[0]][rowFieldTree[1]][
           rowFieldTree[2]
         ][rowFieldTree[3]];
-      console.log(
-        `after TOGGLE_ROWFIELD tabCurrentKey: ${
-          state.tabCurrentKey
-        } action.payload: ${action.payload} current bool: ${
-          newState.routerDetailsData[rowFieldTree[0]][rowFieldTree[1]][
-            rowFieldTree[2]
-          ][rowFieldTree[3]]
-        }`
-      );
+      // debug_log console.log(
+      //   `after TOGGLE_ROWFIELD tabCurrentKey: ${
+      //     state.tabCurrentKey
+      //   } action.payload: ${action.payload} current bool: ${
+      //     newState.routerDetailsData[rowFieldTree[0]][rowFieldTree[1]][
+      //       rowFieldTree[2]
+      //     ][rowFieldTree[3]]
+      //   }`
+      // );
       return newState;
     case 'CLEAR_FILTER':
       return Object.assign({}, state, { filter: EMPTY_FILTER });
@@ -122,7 +122,7 @@ const StRouteDetailsPage = () => {
   };
   const toggleRowField = (e, rowFieldKey) => {
     e.preventDefault();
-    console.log(`toggleRowField, rowFieldKey`, rowFieldKey);
+    // debug_log console.log(`toggleRowField, rowFieldKey`, rowFieldKey);
     dispatch({ type: 'TOGGLE_ROWFIELD', payload: rowFieldKey.substring(5) });
   };
   const setTabCurrentKey = (e, tabKey) => {
@@ -137,7 +137,7 @@ const StRouteDetailsPage = () => {
   useEffect(() => {
     fetchData()
       .then((data) => {
-        console.log('fetchData data', JSON.stringify(data));
+        // debug_log console.log('fetchData data', JSON.stringify(data));
         dispatch({ type: 'FETCH_ROUTERDETAILS', payload: data });
       })
       .catch((error) => {

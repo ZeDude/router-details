@@ -10,7 +10,7 @@ export const fetchData = () => {
       console.error(`${reason}`, response);
       Promise.reject(reason);
     }
-    console.log('fetchData before return', response.data);
+    // debug_log console.log('fetchData before return', response.data);
     return response.data;
   });
 };

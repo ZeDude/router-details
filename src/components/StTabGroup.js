@@ -1,7 +1,7 @@
 import { TAB_KEYS } from './StRouteDetailsUtils';
 
 const StTabGroup = ({ stateRowDetails, setTabCurrentKey }) => {
-  console.log(`StTabGroup tabCurrentKey: ${stateRowDetails.tabCurrentKey}`);
+  // debug_log console.log(`StTabGroup tabCurrentKey: ${stateRowDetails.tabCurrentKey}`);
   return (
     <div key={'st_tab_group'} className="st_tab_group">
       {TAB_KEYS.map((tabKey) => {

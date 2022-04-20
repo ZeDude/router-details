@@ -88,15 +88,15 @@ const StRouterDetailTable = ({
                 );
               });
             } else {
-              console.log(
-                `Empty filter, ${stateRowDetails.tabCurrentKey} ${
-                  keyLabel.key
-                } ${
-                  stateRowDetails.routerDetailsData[
-                    stateRowDetails.tabCurrentKey
-                  ][keyLabel.key]
-                }`
-              );
+              // debug_log console.log(
+              //   `Empty filter, ${stateRowDetails.tabCurrentKey} ${
+              //     keyLabel.key
+              //   } ${
+              //     stateRowDetails.routerDetailsData[
+              //       stateRowDetails.tabCurrentKey
+              //     ][keyLabel.key]
+              //   }`
+              // );
               rowGroupData =
                 stateRowDetails.routerDetailsData[
                   stateRowDetails.tabCurrentKey
