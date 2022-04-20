@@ -70,6 +70,7 @@ const reducerRowDetails = (state, action) => {
       return newState;
     case 'TOGGLE_ROWFIELD':
       newState = Object.assign({}, state);
+      // eslint-disable-next-line no-unused-vars
       let [requestResponse, groupKey, rowKey, valueKey, ...suffix] =
         action.payload.split('##');
       // debug_log console.log(
