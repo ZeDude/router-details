@@ -1,9 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import { EMPTY_FILTER } from './StRouteDetailsUtils';
 
 const StRouterDetailSearch = ({ stateRowDetails, setRowDetailsFilter }) => {
-  const [searchInput, setSearchInput] = useState('');
+  const [searchInput, setSearchInput] = useState(
+    stateRowDetails.filter.searchInput
+  );
   const [showPIIOnly, setShowPIIOnly] = useState(
     stateRowDetails.filter.showPIIOnly
   );
@@ -19,15 +21,22 @@ const StRouterDetailSearch = ({ stateRowDetails, setRowDetailsFilter }) => {
       setRowDetailsFilter(e, newFilter);
     }
   };
-  const resetFilter = (e) => {
+  const resetInput = () => {
     setSearchInput('');
     setShowPIIOnly(false);
+  };
+  const resetFilter = (e) => {
+    resetInput();
     const newFilter = Object.assign({}, EMPTY_FILTER);
     setRowDetailsFilter(e, newFilter);
   };
   const toggle = (value) => {
     return !value;
   };
+  useEffect(() => {
+    resetInput();
+  }, [stateRowDetails.tabCurrentKey]);
+
   return (
     <>
       <div className="st_table_content">
