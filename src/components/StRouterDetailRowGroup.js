@@ -15,16 +15,14 @@ const StRouterDetailRowGroup = ({
   return (
     <>
       {!rowGroupExcluded && (
-        <div key={`group_header##${rowKeyPref}`} className="st_group_header">
+        <div className="st_group_header">
           <div
-            key={`group_header_icon##${rowKeyPref}`}
             className={`st_pointer fas ${
               rowGroupStatus ? 'fa-square-caret-down' : 'fa-square-caret-right'
             } fa-xs st_group_header_icon`}
             onClick={(e) => toggleRowGroup(e, rowGroupKey)}
           ></div>
           <div
-            key={`group_header_label##${rowKeyPref}`}
             className="st_pointer"
             onClick={(e) => toggleRowGroup(e, rowGroupKey)}
           >

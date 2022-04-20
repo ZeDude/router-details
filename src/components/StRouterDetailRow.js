@@ -11,14 +11,9 @@ const StRouterDetailRow = ({
 
   return (
     <>
-      <div
-        key={`row##${rowKeyPref}##${ROW_KEYLABELS[0].key}`}
-        className="st_table st_table_row"
-      >
-        <div key={`row##${rowKeyPref}##${ROW_KEYLABELS[0].key}0`}>
-          {rowData[ROW_KEYLABELS[0].key]}
-        </div>
-        <div key={`row##${rowKeyPref}##${ROW_KEYLABELS[0].key}1`}>
+      <div className="st_table st_table_row">
+        <div>{rowData[ROW_KEYLABELS[0].key]}</div>
+        <div>
           <button
             className={`st_button st_button_pii ${
               rowData[ROW_KEYLABELS[1].key] && 'active'
@@ -28,7 +23,7 @@ const StRouterDetailRow = ({
             PII
           </button>
         </div>
-        <div key={`row##${rowKeyPref}##${ROW_KEYLABELS[0].key}2`}>
+        <div>
           <button
             className={`st_button st_button_masking ${
               rowData[ROW_KEYLABELS[2].key] && 'active'
@@ -38,7 +33,7 @@ const StRouterDetailRow = ({
             Masked
           </button>
         </div>
-        <div key={`row##${rowKeyPref}##${ROW_KEYLABELS[0].key}3`}>
+        <div>
           <button className="st_button st_button_type">
             {rowData[ROW_KEYLABELS[3].key]}
           </button>

@@ -6,44 +6,13 @@ const StRouterDetailTable = ({
   toggleRowGroup,
   toggleRowField
 }) => {
-  let _time = new Date().getTime();
   return (
-    <div
-      key={`dummy1${stateRowDetails.tabCurrentKey}${_time++}`}
-      className="st_table_content"
-    >
-      <div
-        key={`dummy2${stateRowDetails.tabCurrentKey}${_time++}`}
-        className="st_table st_table_header"
-      >
-        <div
-          key={`div1_${stateRowDetails.tabCurrentKey}${
-            ROW_KEYLABELS[0].key
-          }${_time++}`}
-        >
-          {ROW_KEYLABELS[0].label}
-        </div>
-        <div
-          key={`div2_${stateRowDetails.tabCurrentKey}${
-            ROW_KEYLABELS[1].key
-          }${_time++}`}
-        >
-          {ROW_KEYLABELS[1].label}
-        </div>
-        <div
-          key={`div3${stateRowDetails.tabCurrentKey}_${
-            ROW_KEYLABELS[2].key
-          }${_time++}`}
-        >
-          {ROW_KEYLABELS[2].label}
-        </div>
-        <div
-          key={`div4${stateRowDetails.tabCurrentKey}_${
-            ROW_KEYLABELS[3].key
-          }${_time++}`}
-        >
-          {ROW_KEYLABELS[3].label}
-        </div>
+    <div className="st_table_content">
+      <div className="st_table st_table_header">
+        <div>{ROW_KEYLABELS[0].label}</div>
+        <div>{ROW_KEYLABELS[1].label}</div>
+        <div>{ROW_KEYLABELS[2].label}</div>
+        <div>{ROW_KEYLABELS[3].label}</div>
       </div>
       {stateRowDetails?.rowGroupStatus !== null &&
         ROWGROUP_KEYLABELS.map((keyLabel, keyLabelIndex) => {
@@ -105,9 +74,7 @@ const StRouterDetailTable = ({
           }
           return (
             <StRouterDetailRowGroup
-              key={`tabdetrowgroup##${stateRowDetails.tabCurrentKey}##${
-                ROWGROUP_KEYLABELS[keyLabelIndex].key
-              }##${keyLabelIndex}${_time++}`}
+              key={`tabdetrowgroup##${stateRowDetails.tabCurrentKey}##${ROWGROUP_KEYLABELS[keyLabelIndex].key}##${keyLabelIndex}`}
               tabCurrentKey={stateRowDetails.tabCurrentKey}
               rowGroupKeyIndex={keyLabelIndex}
               rowGroupExcluded={rowGroupExcluded}
@@ -118,12 +85,7 @@ const StRouterDetailTable = ({
             />
           );
         })}
-      <div
-        key={`padd_${stateRowDetails.tabCurrentKey}${_time++}`}
-        className="st_padding_bottom15"
-      >
-        &nbsp;
-      </div>
+      <div className="st_padding_bottom15">&nbsp;</div>
     </div>
   );
 };

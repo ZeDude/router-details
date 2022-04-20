@@ -70,29 +70,28 @@ const reducerRowDetails = (state, action) => {
       return newState;
     case 'TOGGLE_ROWFIELD':
       newState = Object.assign({}, state);
-      let rowFieldTree = action.payload.split('##');
+      let [requestResponse, groupKey, rowKey, valueKey, ...suffix] =
+        action.payload.split('##');
       // debug_log console.log(
       //   `before TOGGLE_ROWFIELD tabCurrentKey: ${
       //     state.tabCurrentKey
       //   } action.payload: ${action.payload} current bool: ${
-      //     newState.routerDetailsData[rowFieldTree[0]][rowFieldTree[1]][
-      //       rowFieldTree[2]
-      //     ][rowFieldTree[3]]
+      //     newState.routerDetailsData[requestResponse][groupKey][
+      //       rowKey
+      //     ][valueKey]
       //   }`
       // );
-      newState.routerDetailsData[rowFieldTree[0]][rowFieldTree[1]][
-        rowFieldTree[2]
-      ][rowFieldTree[3]] =
-        !newState.routerDetailsData[rowFieldTree[0]][rowFieldTree[1]][
-          rowFieldTree[2]
-        ][rowFieldTree[3]];
+      newState.routerDetailsData[requestResponse][groupKey][rowKey][valueKey] =
+        !newState.routerDetailsData[requestResponse][groupKey][rowKey][
+          valueKey
+        ];
       // debug_log console.log(
       //   `after TOGGLE_ROWFIELD tabCurrentKey: ${
       //     state.tabCurrentKey
       //   } action.payload: ${action.payload} current bool: ${
-      //     newState.routerDetailsData[rowFieldTree[0]][rowFieldTree[1]][
+      //     newState.routerDetailsData[requestResponse][groupKey][
       //       rowFieldTree[2]
-      //     ][rowFieldTree[3]]
+      //     ][valueKey]
       //   }`
       // );
       return newState;
@@ -165,14 +164,12 @@ const StRouteDetailsPage = () => {
         stateRowDetails={stateRowDetails}
         setTabCurrentKey={setTabCurrentKey}
       />
-      <div key={'st_tab_container'} className="st_tab_container">
+      <div className="st_tab_container">
         <StRouterDetailSearch
-          key={`routerSearch${stateRowDetails.tabCurrentKey}`}
           stateRowDetails={stateRowDetails}
           setRowDetailsFilter={setRowDetailsFilter}
         />
         <StRouterDetailTable
-          key={`routerTable${stateRowDetails.tabCurrentKey}`}
           stateRowDetails={stateRowDetails}
           toggleRowGroup={toggleRowGroup}
           toggleRowField={toggleRowField}
