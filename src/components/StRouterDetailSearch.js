@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 import { EMPTY_FILTER } from './StRouteDetailsUtils';
 
@@ -9,33 +9,45 @@ const StRouterDetailSearch = ({ stateRowDetails, setRowDetailsFilter }) => {
   const [showPIIOnly, setShowPIIOnly] = useState(
     stateRowDetails.filter.showPIIOnly
   );
-  const applyFilter = (e) => {
-    e.preventDefault();
-    const newFilter = Object.assign({}, EMPTY_FILTER);
-    newFilter.searchInput = searchInput.toLowerCase().trim();
-    newFilter.showPIIOnly = showPIIOnly;
-    if (
-      newFilter.searchInput !== stateRowDetails.filter.searchInput ||
-      newFilter.showPIIOnly !== stateRowDetails.filter.showPIIOnly
-    ) {
-      setRowDetailsFilter(e, newFilter);
-    }
-  };
-  const resetInput = () => {
+  const applyFilter = useCallback(
+    (e) => {
+      e.preventDefault();
+      const newFilter = Object.assign({}, EMPTY_FILTER);
+      newFilter.searchInput = searchInput.toLowerCase().trim();
+      newFilter.showPIIOnly = showPIIOnly;
+      if (
+        newFilter.searchInput !== stateRowDetails.filter.searchInput ||
+        newFilter.showPIIOnly !== stateRowDetails.filter.showPIIOnly
+      ) {
+        setRowDetailsFilter(e, newFilter);
+      }
+    },
+    [
+      searchInput,
+      showPIIOnly,
+      stateRowDetails.filter.searchInput,
+      stateRowDetails.filter.showPIIOnly,
+      setRowDetailsFilter
+    ]
+  );
+  const resetInput = useCallback(() => {
     setSearchInput('');
     setShowPIIOnly(false);
-  };
-  const resetFilter = (e) => {
-    resetInput();
-    const newFilter = Object.assign({}, EMPTY_FILTER);
-    setRowDetailsFilter(e, newFilter);
-  };
+  }, []);
+  const resetFilter = useCallback(
+    (e) => {
+      resetInput();
+      const newFilter = Object.assign({}, EMPTY_FILTER);
+      setRowDetailsFilter(e, newFilter);
+    },
+    [setRowDetailsFilter, resetInput]
+  );
   const toggle = (value) => {
     return !value;
   };
   useEffect(() => {
     resetInput();
-  }, [stateRowDetails.tabCurrentKey]);
+  }, [stateRowDetails.tabCurrentKey, resetInput]);
 
   return (
     <>

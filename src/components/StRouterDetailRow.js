@@ -16,7 +16,7 @@ const StRouterDetailRow = ({
         <div>
           <button
             className={`st_button st_button_pii ${
-              rowData[ROW_KEYLABELS[1].key] && 'active'
+              rowData[ROW_KEYLABELS[1].key] ? 'active' : ''
             }`}
             onClick={(e) => toggleRowField(e, rowFieldPII)}
           >
@@ -26,7 +26,7 @@ const StRouterDetailRow = ({
         <div>
           <button
             className={`st_button st_button_masking ${
-              rowData[ROW_KEYLABELS[2].key] && 'active'
+              rowData[ROW_KEYLABELS[2].key] ? 'active' : ''
             }`}
             onClick={(e) => toggleRowField(e, rowFieldMasking)}
           >

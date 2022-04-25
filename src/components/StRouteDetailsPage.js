@@ -1,4 +1,4 @@
-import { useReducer, useEffect } from 'react';
+import { useReducer, useEffect, useCallback } from 'react';
 
 import { fetchData } from '../controllers/StRouteDetailsController';
 import {
@@ -116,23 +116,24 @@ const StRouteDetailsPage = () => {
     reducerRowDetails,
     initialState
   );
-  const toggleRowGroup = (e, rowGroupKey) => {
+  const toggleRowGroup = useCallback((e, rowGroupKey) => {
     e.preventDefault();
     dispatch({ type: 'TOGGLE_ROWGROUP', payload: rowGroupKey });
-  };
-  const toggleRowField = (e, rowFieldKey) => {
+  }, []);
+  const toggleRowField = useCallback((e, rowFieldKey) => {
     e.preventDefault();
     // debug_log console.log(`toggleRowField, rowFieldKey`, rowFieldKey);
     dispatch({ type: 'TOGGLE_ROWFIELD', payload: rowFieldKey.substring(5) });
-  };
-  const setTabCurrentKey = (e, tabKey) => {
+  }, []);
+  const setTabCurrentKey = useCallback((e, tabKey) => {
     e.preventDefault();
     dispatch({ type: 'CHANGE_TABKEY', payload: tabKey });
-  };
-  const setRowDetailsFilter = (e, newFilter) => {
+    e.preventDefault();
+  }, []);
+  const setRowDetailsFilter = useCallback((e, newFilter) => {
     e.preventDefault();
     dispatch({ type: 'APPLY_FILTER', payload: newFilter });
-  };
+  }, []);
 
   useEffect(() => {
     fetchData()
